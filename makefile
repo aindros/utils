@@ -1,3 +1,6 @@
+OUT1 = .
+include <win-sdk.mk>
+
 SRC=src
 BIN=bin
 OUT=clist.exe
@@ -7,8 +10,7 @@ CC=cl
 cdebug=
 cflags=
 cvars=
-LIBS="D:\Program Files (x86)\Windows Kits\10\Lib\10.0.14393.0\um\x86\User32.Lib"  \
-     "D:\Program Files (x86)\Windows Kits\10\Lib\10.0.14393.0\um\x86\Gdi32.Lib"
+LIBS=$(WIN_SDK_LIBS)
 
 all: init dist
 
