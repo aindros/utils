@@ -34,6 +34,33 @@ void List_Add(List*  list,
   list->size ++;
 }
 
+void List_AddAll(List *dest, List *other)
+{
+  dest->last->next = other->first;
+  dest->size += other->size;
+}
+
+void List_Remove(List *list, List_Item *item)
+{
+  List_Item *curr = list->first->next;
+  List_Item *prev = list->first;
+
+  if (list->first == item) {
+    free(list->first);
+    list->first = curr;
+  } else {
+    while (curr != NULL) {
+      if (curr == item) {
+	prev->next = curr->next;
+	free(curr);
+	return;
+      }
+      prev = curr;
+      curr = curr->next;
+    }
+  }
+}
+
 Iterator List_Iterator(List* list)
 {
   struct iterator_t *iterator = malloc(sizeof(struct iterator_t));

@@ -18,6 +18,8 @@ typedef struct iterator_t {
 
 List       List_Create     (void);
 void       List_Add        (List *, void *, int);
+void       List_AddAll     (List *, List *);
+void       List_Remove     (List *, List_Item *);
 Iterator   List_Iterator   (List *);
 int        Iterator_HasNext(Iterator *);
 List_Item *Iterator_Next   (Iterator *);
