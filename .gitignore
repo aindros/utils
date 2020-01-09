@@ -1,3 +1,5 @@
 bin/
 obj/
-cmd.lnk
+
+# Remove all links
+*.lnk
