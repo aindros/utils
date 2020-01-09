@@ -27,7 +27,7 @@ int main(int argc, char** argv)
   it = List_Iterator(&list);
   while(Iterator_HasNext(&it)) {
     current = Iterator_Next(&it);
-    printf("%s\n", current->data);
+    printf("%s\n", (char *) current->data);
   }
 
   return 0;
