@@ -1,19 +1,34 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
 int main(int argc, char** argv)
 {
-  int test1 = 5;
-  int test2 = 32;
+  int i;
+  int *t;
+  List_Item *current;
+  char buffer[4];
+  char *dest = malloc(sizeof(char) * 4);
 
-  List* list = List_Create();
+  Iterator it;
 
-  List_Add(list, &test1, sizeof(int));
-  List_Add(list, &test2, sizeof(int));
+  List list = List_Create();
 
-  int* t = list->data;
+  for (i = 0; i < 23; i++) {
+    itoa(i, buffer, 10);
+    strcpy(dest, "i");
+    strcat(dest, buffer);
+    List_Add(&list, dest, sizeof(int));
+  }
 
-  printf("Valore: %i, size: %i\n", *t, list->size);
+  printf("read from list with iterator:\n");
+  
+  it = List_Iterator(&list);
+  while(Iterator_HasNext(&it)) {
+    current = Iterator_Next(&it);
+    printf("%s\n", current->data);
+  }
 
   return 0;
 }
