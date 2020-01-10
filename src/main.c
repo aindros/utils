@@ -6,38 +6,38 @@
 int main(int argc, char** argv)
 {
   int i;
-  List_Item *current, *r;
+  list_item_t *current, *r;
   char buffer[4];
   char *dest = malloc(sizeof(char) * 4);
 
-  Iterator it;
+  iterator_t it;
 
-  List list1 = List_Create();
-  List list2 = List_Create();
+  list_t list1 = clist_create();
+  list_t list2 = clist_create();
 
   for (i = 0; i < 2; i++) {
     itoa(i, buffer, 10);
     strcpy(dest, "i");
     strcat(dest, buffer);
-    List_Add(&list1, dest, sizeof(int));
+    clist_add(&list1, dest, sizeof(int));
   }
 
   for (i = 0; i < 5; i++) {
     itoa(i, buffer, 10);
     strcpy(dest, "j");
     strcat(dest, buffer);
-    List_Add(&list2, dest, sizeof(int));
+    clist_add(&list2, dest, sizeof(int));
     if (i == 3) r = list2.last;
   }
 
-  List_Remove(&list2, r);
-  List_AddAll(&list1, &list2);
+  clist_remove(&list2, r);
+  clist_add_all(&list1, &list2);
 
   printf("read from list with iterator:\n");
   
-  it = List_Iterator(&list1);
-  while(Iterator_HasNext(&it)) {
-    current = Iterator_Next(&it);
+  it = clist_iterator(&list1);
+  while(iterator_has_next(&it)) {
+    current = iterator_next(&it);
     printf("%s\n", (char *) current->data);
   }
 

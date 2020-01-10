@@ -2,9 +2,9 @@
 #include <string.h> /* memcpy */
 #include "list.h"
 
-List List_Create()
+list_t clist_create()
 {
-  List list;
+  list_t list;
 
   list.first = NULL;
   list.last  = NULL;
@@ -13,9 +13,9 @@ List List_Create()
   return list;
 }
 
-void List_Add(List*  list,
-	      void* data,
-	      int   size_of)
+void clist_add(list_t *list,
+               void   *data,
+               int     size_of)
 {
   struct list_item_t *item = malloc(sizeof(struct list_item_t));
 
@@ -34,16 +34,18 @@ void List_Add(List*  list,
   list->size ++;
 }
 
-void List_AddAll(List *dest, List *other)
+void clist_add_all(list_t *dest,
+                   list_t *other)
 {
   dest->last->next = other->first;
   dest->size += other->size;
 }
 
-void List_Remove(List *list, List_Item *item)
+void clist_remove(list_t *list,
+                  list_item_t *item)
 {
-  List_Item *curr = list->first->next;
-  List_Item *prev = list->first;
+  list_item_t *curr = list->first->next;
+  list_item_t *prev = list->first;
 
   if (list->first == item) {
     free(list->first);
@@ -61,7 +63,7 @@ void List_Remove(List *list, List_Item *item)
   }
 }
 
-Iterator List_Iterator(List* list)
+iterator_t clist_iterator(list_t *list)
 {
   struct iterator_t *iterator = malloc(sizeof(struct iterator_t));
   iterator->current = list->first;
@@ -69,12 +71,12 @@ Iterator List_Iterator(List* list)
   return *iterator;
 }
 
-int Iterator_HasNext(Iterator* iterator)
+int iterator_has_next(iterator_t *iterator)
 {
   return iterator->current != NULL;
 }
 
-List_Item *Iterator_Next(Iterator *iterator)
+list_item_t *iterator_next(iterator_t *iterator)
 {
   struct list_item_t *current = iterator->current;
   iterator->current = iterator->current->next;
