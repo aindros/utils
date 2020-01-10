@@ -22,7 +22,7 @@ init:
   if not exist $(BIN) mkdir $(BIN)
   if not exist $(OBJ) mkdir $(OBJ)
 
-dist:
+dist: init
   $(CC) /Fo$(OBJ)\ $(cdebug) $(cflags) $(cvars) $(SRC)\*.c /link $(LIBS) /OUT:$(BIN)\$(NAME).exe
 
 dll: init
