@@ -1,0 +1,55 @@
+#
+# Copyright (C) 2022  Alessandro Iezzi <aiezzi AT alessandroiezzi PERIOD it>
+#
+# This file is part of clist.
+#
+# clist is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# clist is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with clist.  If not, see <https://www.gnu.org/licenses/>.
+#
+
+OUT1 = .
+include <win-sdk.mk>
+
+NAME=clist
+
+SRC=src
+BIN=bin
+OBJ=obj
+
+CC=cl
+LB=lib
+
+cdebug=
+cflags=
+cvars=
+
+LIBS=$(WIN_SDK_LIBS)
+
+all: init dist dll lib
+
+init:
+  if not exist $(BIN) mkdir $(BIN)
+  if not exist $(OBJ) mkdir $(OBJ)
+
+dist: init
+  $(CC) /Fo$(OBJ)\ $(cdebug) $(cflags) $(cvars) $(SRC)\*.c /link $(LIBS) /OUT:$(BIN)\$(NAME).exe
+
+dll: init
+  $(CC) /Fo$(OBJ)\ /LD $(SRC)\*.c /link /OUT:$(BIN)\$(NAME).dll
+
+lib: init dll
+  $(LB) /OUT:$(BIN)\$(NAME).lib $(OBJ)\*.obj
+
+clean:
+  if exist $(BIN) rmdir /s /q $(BIN)
+  if exist $(OBJ) rmdir /s /q $(OBJ)
