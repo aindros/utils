@@ -35,14 +35,14 @@ int main(int argc, char** argv)
   list_t list2 = clist_create();
 
   for (i = 0; i < 2; i++) {
-    itoa(i, buffer, 10);
+    sprintf(buffer, "%d", i);
     strcpy(dest, "i");
     strcat(dest, buffer);
     clist_add(&list1, dest, sizeof(int));
   }
 
   for (i = 0; i < 5; i++) {
-    itoa(i, buffer, 10);
+    sprintf(buffer, "%d", i);
     strcpy(dest, "j");
     strcat(dest, buffer);
     clist_add(&list2, dest, sizeof(int));
