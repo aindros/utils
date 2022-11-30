@@ -95,7 +95,7 @@ int clist_iterator_has_next(iterator_t *iterator)
   return iterator->current != NULL;
 }
 
-list_item_t *iterator_next(iterator_t *iterator)
+list_item_t *clist_iterator_next(iterator_t *iterator)
 {
   struct list_item_t *current = iterator->current;
   iterator->current = iterator->current->next;

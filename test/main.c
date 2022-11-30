@@ -56,7 +56,7 @@ int main(int argc, char** argv)
 
   it = clist_iterator(&list1);
   while(clist_iterator_has_next(&it)) {
-    current = iterator_next(&it);
+    current = clist_iterator_next(&it);
     printf("%s\n", (char *) current->data);
   }
 
