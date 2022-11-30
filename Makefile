@@ -22,7 +22,7 @@ SRC != find src -name '*.c'
 OBJ  = ${SRC:.c=.o}
 
 WARNINGS = -Wall -Werror
-CFLAGS   = ${WARNINGS} -ansi -pedantic -fpic
+CFLAGS   = ${WARNINGS} -ansi -pedantic -fPIC
 LFLAGS   =
 
 all: ${OBJ} liblist.so
