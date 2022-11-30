@@ -1,6 +1,7 @@
 liblist.so
 *.o
 test/list.h
+test/test1
 
 bin/
 obj/
