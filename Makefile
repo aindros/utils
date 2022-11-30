@@ -22,6 +22,8 @@ SRC != find src -name '*.c'
 OBJ  = ${SRC:.c=.o}
 
 VERSION  = 0.0.0
+
+PREFIX   = /usr/local
 WARNINGS = -Wall -Werror
 CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} -ansi -pedantic -fPIC
 LFLAGS   =
@@ -35,4 +37,16 @@ liblist.so:
 	${CC} -shared -o $@ ${OBJ}
 
 clean:
-	rm -f ${OBJ} liblist.so
+	rm -f liblist.so ${OBJ} clist-${VERSION}.tar.gz
+	@make -C test $@
+
+dist: clean
+	mkdir -p clist-${VERSION}
+	cp -R LICENSE Makefile DOSmakefile README.md src test clist-${VERSION}
+	tar -cf clist-${VERSION}.tar clist-${VERSION}
+	gzip clist-${VERSION}.tar
+	rm -rf clist-${VERSION}
+
+install: all
+	mkdir -p ${PREFIX}/lib/clist
+	cp liblist.so ${PREFIX}/lib/clist/
