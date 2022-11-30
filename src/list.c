@@ -90,7 +90,7 @@ iterator_t clist_iterator(list_t *list)
   return *iterator;
 }
 
-int iterator_has_next(iterator_t *iterator)
+int clist_iterator_has_next(iterator_t *iterator)
 {
   return iterator->current != NULL;
 }

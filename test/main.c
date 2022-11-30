@@ -53,9 +53,9 @@ int main(int argc, char** argv)
   clist_add_all(&list1, &list2);
 
   printf("read from list with iterator:\n");
-  
+
   it = clist_iterator(&list1);
-  while(iterator_has_next(&it)) {
+  while(clist_iterator_has_next(&it)) {
     current = iterator_next(&it);
     printf("%s\n", (char *) current->data);
   }
