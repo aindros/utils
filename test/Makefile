@@ -25,18 +25,16 @@ WARNINGS = -Wall -Werror
 CFLAGS   = ${WARNINGS} -ansi -pedantic
 LFLAGS   =
 
-all: init ${OBJ} test1
+all: ../liblist.so ${OBJ} test1
 
-init:
+../liblist.so:
 	@make -C ..
-	cp ../src/list.h ./
-	cp ../liblist.so ./
 
 .c.o:
-	${CC} -c ${CFLAGS} $< -o $@
+	${CC} -I../src/ -c ${CFLAGS} $< -o $@
 
 test1:
-	${CC} -shared -o $@ ${OBJ}
+	${CC} -o $@ -L../ -Wl,-rpath=../ ${OBJ} -llist
 
 clean:
-	rm -f ${OBJ} test1 list.h liblist.so
+	rm -f ${OBJ} test1
