@@ -21,8 +21,9 @@ CC   = clang
 SRC != find src -name '*.c'
 OBJ  = ${SRC:.c=.o}
 
+VERSION  = 0.0.0
 WARNINGS = -Wall -Werror
-CFLAGS   = ${WARNINGS} -ansi -pedantic -fPIC
+CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} -ansi -pedantic -fPIC
 LFLAGS   =
 
 all: ${OBJ} liblist.so

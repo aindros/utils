@@ -102,3 +102,9 @@ list_item_t *clist_iterator_next(iterator_t *iterator)
 
   return current;
 }
+
+char *
+clist_version(void)
+{
+  return VERSION;
+}

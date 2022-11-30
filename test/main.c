@@ -52,6 +52,7 @@ int main(int argc, char** argv)
   clist_remove(&list2, r);
   clist_add_all(&list1, &list2);
 
+  printf("Version: %s\n\n", clist_version());
   printf("read from list with iterator:\n");
 
   it = clist_iterator(&list1);
