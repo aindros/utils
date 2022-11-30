@@ -18,7 +18,7 @@
 #
 
 CC   = clang
-SRC != find * -name '*.c'
+SRC != find src -name '*.c'
 OBJ  = ${SRC:.c=.o}
 
 WARNINGS = -Wall -Werror
