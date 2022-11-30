@@ -1,3 +1,6 @@
+liblist.so
+*.o
+
 bin/
 obj/
 
