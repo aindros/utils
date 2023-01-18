@@ -28,13 +28,16 @@ WARNINGS = -Wall -Werror
 CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} -ansi -pedantic -fPIC
 LFLAGS   =
 
-all: ${OBJ} liblist.so
+all: ${OBJ} liblist.so liblist.a
 
 .c.o:
 	${CC} -c ${CFLAGS} $< -o $@
 
 liblist.so:
 	${CC} -shared -o $@ ${OBJ}
+
+liblist.a:
+	ar rcs $@ ${OBJ}
 
 clean:
 	rm -f liblist.so ${OBJ} clist-${VERSION}.tar.gz
