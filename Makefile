@@ -31,7 +31,8 @@ VERSION  = 0.0.0
 
 PREFIX   = /usr/local
 WARNINGS = -Wall -Werror -pedantic
-CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} -ansi -fPIC
+STANDARD = -std=c99
+CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} ${STANDARD} -fPIC
 LFLAGS   =
 
 all: ${SHARED} ${ARCHIVE}
