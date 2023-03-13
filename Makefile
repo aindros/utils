@@ -22,6 +22,7 @@ SRC != find src -name '*.c'
 OBJ  = ${SRC:.c=.o}
 NAME = utils
 
+LIBNAME = lib${NAME}
 VERSION  = 0.0.0
 
 PREFIX   = /usr/local
