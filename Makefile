@@ -24,6 +24,7 @@ NAME = utils
 
 LIBNAME = lib${NAME}
 SHARED  = ${LIBNAME}.so
+ARCHIVE = ${LIBNAME}.a
 VERSION  = 0.0.0
 
 PREFIX   = /usr/local
@@ -31,7 +32,7 @@ WARNINGS = -Wall -Werror
 CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} -ansi -pedantic -fPIC
 LFLAGS   =
 
-all: ${SHARED} liblist.a
+all: ${SHARED} ${ARCHIVE}
 
 .c.o:
 	${CC} -c ${CFLAGS} $< -o $@
@@ -39,11 +40,11 @@ all: ${SHARED} liblist.a
 ${SHARED}: ${OBJ}
 	${CC} -shared -o $@ ${OBJ}
 
-liblist.a:
+${ARCHIVE}: ${OBJ}
 	ar rcs $@ ${OBJ}
 
 clean:
-	rm -f ${SHARED} liblist.a
+	rm -f ${SHARED} ${ARCHIVE}
 	rm -f ${OBJ}
 	rm -f *.tar.gz
 	@make -C test $@
