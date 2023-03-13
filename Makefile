@@ -23,6 +23,7 @@ OBJ  = ${SRC:.c=.o}
 NAME = utils
 
 LIBNAME = lib${NAME}
+SHARED  = ${LIBNAME}.so
 VERSION  = 0.0.0
 
 PREFIX   = /usr/local
@@ -30,19 +31,21 @@ WARNINGS = -Wall -Werror
 CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} -ansi -pedantic -fPIC
 LFLAGS   =
 
-all: ${OBJ} liblist.so liblist.a
+all: ${SHARED} liblist.a
 
 .c.o:
 	${CC} -c ${CFLAGS} $< -o $@
 
-liblist.so:
+${SHARED}: ${OBJ}
 	${CC} -shared -o $@ ${OBJ}
 
 liblist.a:
 	ar rcs $@ ${OBJ}
 
 clean:
-	rm -f liblist.so ${OBJ} clist-${VERSION}.tar.gz
+	rm -f ${SHARED} liblist.a
+	rm -f ${OBJ}
+	rm -f *.tar.gz
 	@make -C test $@
 
 dist: clean
@@ -53,5 +56,5 @@ dist: clean
 	rm -rf clist-${VERSION}
 
 install: all
-	mkdir -p ${PREFIX}/lib/clist
-	cp liblist.so ${PREFIX}/lib/clist/
+	mkdir -p ${PREFIX}/lib/${NAME}
+	cp ${SHARED} ${PREFIX}/lib/${NAME}/
