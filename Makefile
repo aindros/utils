@@ -62,3 +62,6 @@ dist: clean
 install: all
 	mkdir -p ${PREFIX}/lib/${NAME}
 	cp ${SHARED} ${PREFIX}/lib/${NAME}/
+
+tests: all
+	@make -C test
