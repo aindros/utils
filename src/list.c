@@ -103,13 +103,17 @@ clist_iterator_has_next(iterator_t i)
 	return i.current != NULL;
 }
 
-list_item_t
-clist_iterator_next(iterator_t *iterator)
+void *
+clist_iterator_next(iterator_t *i)
 {
-  struct list_item_t *current = iterator->current;
-  iterator->current = iterator->current->next;
+	if (i == NULL || i->current == NULL)
+		return NULL;
 
-  return current;
+	void *data = i->current->data;
+	/* `next` can be NULL */
+	i->current = i->current->next;
+
+	return data;
 }
 
 char *
