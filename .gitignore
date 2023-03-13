@@ -1,5 +1,5 @@
-liblist.so
-liblist.a
+*.so
+*.a
 *.o
 test/list.h
 test/test1
