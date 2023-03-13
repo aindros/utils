@@ -30,8 +30,8 @@ DISTNAME = ${LIBNAME}-${VERSION}
 VERSION  = 0.0.0
 
 PREFIX   = /usr/local
-WARNINGS = -Wall -Werror
-CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} -ansi -pedantic -fPIC
+WARNINGS = -Wall -Werror -pedantic
+CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} -ansi -fPIC
 LFLAGS   =
 
 all: ${SHARED} ${ARCHIVE}
