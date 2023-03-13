@@ -35,15 +35,14 @@ clist_create()
 
 void
 clist_add(list_t *list,
-          void   *data,
-          int     size_of)
+          void   *data)
 {
   struct list_item_t *item = malloc(sizeof(struct list_item_t));
 
-  void *dest = malloc(size_of); /* allocates memory like data parameter */
-  memcpy(dest, data, size_of);  /* copies data inside dest              */
-  item->data = dest;
-  item->next = NULL;
+	void *dest = malloc(sizeof(data)); /* allocates memory like data parameter */
+	memcpy(dest, data, sizeof(data));  /* copies data inside dest              */
+	item->data = dest;
+	item->next = NULL;
 
   if (list->first == NULL)
     list->first = item;
