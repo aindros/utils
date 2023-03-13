@@ -21,7 +21,8 @@
 #include <string.h> /* memcpy */
 #include "list.h"
 
-list_t clist_create()
+list_t
+clist_create()
 {
   list_t list;
 
@@ -32,9 +33,10 @@ list_t clist_create()
   return list;
 }
 
-void clist_add(list_t *list,
-               void   *data,
-               int     size_of)
+void
+clist_add(list_t *list,
+          void   *data,
+          int     size_of)
 {
   struct list_item_t *item = malloc(sizeof(struct list_item_t));
 
@@ -82,7 +84,8 @@ void clist_remove(list_t *list,
   }
 }
 
-iterator_t clist_iterator(list_t *list)
+iterator_t
+clist_iterator(list_t *list)
 {
   struct iterator_t *iterator = malloc(sizeof(struct iterator_t));
   iterator->current = list->first;
@@ -90,12 +93,14 @@ iterator_t clist_iterator(list_t *list)
   return *iterator;
 }
 
-int clist_iterator_has_next(iterator_t *iterator)
+int
+clist_iterator_has_next(iterator_t i)
 {
   return iterator->current != NULL;
 }
 
-list_item_t *clist_iterator_next(iterator_t *iterator)
+list_item_t
+clist_iterator_next(iterator_t *iterator)
 {
   struct list_item_t *current = iterator->current;
   iterator->current = iterator->current->next;
