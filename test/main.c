@@ -21,45 +21,35 @@
 #include <stdlib.h>
 #include <string.h>
 #include <list.h>
+#include <map.h>
+
+void test_list1();
+void test_list2();
+void test_list3();
+void test_list4();
+void test_list5();
+void test_list6();
+
+void
+test_map()
+{
+	map_t map = cmap_create();
+	cmap_put(&map, "hi",    "test");
+	cmap_put(&map, "hello", "test");
+	cmap_put(&map, "good",  "test");
+	cmap_put(&map, "best",  "test");
+}
 
 int main(int argc, char** argv)
 {
-  int i;
-  list_item_t *current, *r;
-  char buffer[4];
-  char *dest = malloc(sizeof(char) * 4);
+	test_list1();
+	test_list2();
+	test_list3();
+	test_list4();
+	test_list5();
+	test_list6();
 
-  iterator_t it;
+  test_map();
 
-  list_t list1 = clist_create();
-  list_t list2 = clist_create();
-
-  for (i = 0; i < 2; i++) {
-    sprintf(buffer, "%d", i);
-    strcpy(dest, "i");
-    strcat(dest, buffer);
-    clist_add(&list1, dest, sizeof(int));
-  }
-
-  for (i = 0; i < 5; i++) {
-    sprintf(buffer, "%d", i);
-    strcpy(dest, "j");
-    strcat(dest, buffer);
-    clist_add(&list2, dest, sizeof(int));
-    if (i == 3) r = list2.last;
-  }
-
-  clist_remove(&list2, r);
-  clist_add_all(&list1, &list2);
-
-  printf("Version: %s\n\n", clist_version());
-  printf("read from list with iterator:\n");
-
-  it = clist_iterator(&list1);
-  while(clist_iterator_has_next(&it)) {
-    current = clist_iterator_next(&it);
-    printf("%s\n", (char *) current->data);
-  }
-
-  return 0;
+	return 0;
 }
