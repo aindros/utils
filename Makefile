@@ -20,6 +20,7 @@
 CC   = cc
 SRC != find src -name '*.c'
 OBJ  = ${SRC:.c=.o}
+NAME = utils
 
 VERSION  = 0.0.0
 
