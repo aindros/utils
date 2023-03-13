@@ -100,7 +100,7 @@ clist_iterator(list_t *list)
 int
 clist_iterator_has_next(iterator_t i)
 {
-  return iterator->current != NULL;
+	return i.current != NULL;
 }
 
 list_item_t

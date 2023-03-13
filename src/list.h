@@ -40,7 +40,7 @@ void         clist_add              (list_t *, void *);
 void         clist_add_all          (list_t *, list_t *);
 void         clist_remove           (list_t *, list_item_t *);
 iterator_t   clist_iterator         (list_t *);
-int          clist_iterator_has_next(iterator_t *);
+int          clist_iterator_has_next(iterator_t);
 list_item_t *clist_iterator_next    (iterator_t *);
 char*		 clist_version			(void);
 
