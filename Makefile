@@ -17,7 +17,7 @@
 # along with libutils. If not, see <https://www.gnu.org/licenses/>.
 #
 
-CC   = clang
+CC   = cc
 SRC != find src -name '*.c'
 OBJ  = ${SRC:.c=.o}
 
