@@ -17,24 +17,31 @@
 # along with libutils. If not, see <https://www.gnu.org/licenses/>.
 #
 
-CC   = clang
+CC   = cc
 SRC != find * -name '*.c'
 OBJ  = ${SRC:.c=.o}
 
-WARNINGS = -Wall -Werror
-CFLAGS   = ${WARNINGS} -ansi -pedantic
-LFLAGS   =
+LIBNAME  = utils
+SHARED   = ../lib${LIBNAME}.so
 
-all: ../liblist.so ${OBJ} test1
+#WARNINGS = -Wall -Werror -pedantic
+STANDARD = -std=c99
+CFLAGS   = ${WARNINGS} -I../src/
+LFLAGS   = -l${LIBNAME} -L../ -Wl,-rpath=../
 
-../liblist.so:
+NAME = test1
+
+all: ${SHARED} ${NAME}
+	./${NAME}
+
+${SHARED}:
 	@make -C ..
 
 .c.o:
-	${CC} -I../src/ -c ${CFLAGS} $< -o $@
+	${CC} ${CFLAGS} -c $< -o $@
 
-test1:
-	${CC} -o $@ -L../ -Wl,-rpath=../ ${OBJ} -llist
+${NAME}: ${OBJ}
+	${CC} ${LFLAGS} -o $@ ${OBJ}
 
 clean:
-	rm -f ${OBJ} test1
+	rm -f ${OBJ} ${NAME} *.core
