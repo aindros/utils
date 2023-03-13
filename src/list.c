@@ -58,8 +58,13 @@ clist_add(list_t *list,
 void clist_add_all(list_t *dest,
                    list_t *other)
 {
-  dest->last->next = other->first;
-  dest->size += other->size;
+	/* Concatenation of both lists must be iterated and not referenced becasue
+	 * if you clear `other` you'll lost all elements */
+
+	iterator_t i = clist_iterator(other);
+	while (clist_iterator_has_next(i)) {
+		clist_add(dest, clist_iterator_next(&i));
+	}
 }
 
 void clist_remove(list_t *list,
