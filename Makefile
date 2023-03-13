@@ -25,6 +25,8 @@ NAME = utils
 LIBNAME = lib${NAME}
 SHARED  = ${LIBNAME}.so
 ARCHIVE = ${LIBNAME}.a
+DISTNAME = ${LIBNAME}-${VERSION}
+
 VERSION  = 0.0.0
 
 PREFIX   = /usr/local
@@ -46,15 +48,15 @@ ${ARCHIVE}: ${OBJ}
 clean:
 	rm -f ${SHARED} ${ARCHIVE}
 	rm -f ${OBJ}
-	rm -f *.tar.gz
+	rm -f ${DISTNAME}.tar.gz
 	@make -C test $@
 
 dist: clean
-	mkdir -p clist-${VERSION}
-	cp -R LICENSE Makefile DOSmakefile README.md src test clist-${VERSION}
-	tar -cf clist-${VERSION}.tar clist-${VERSION}
-	gzip clist-${VERSION}.tar
-	rm -rf clist-${VERSION}
+	mkdir -p ${DISTNAME}
+	cp -R LICENSE Makefile DOSmakefile README.md src test ${DISTNAME}
+	tar -cf ${DISTNAME}.tar ${DISTNAME}
+	gzip ${DISTNAME}.tar
+	rm -rf ${DISTNAME}
 
 install: all
 	mkdir -p ${PREFIX}/lib/${NAME}
