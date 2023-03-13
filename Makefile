@@ -33,7 +33,7 @@ PREFIX   = /usr/local
 WARNINGS = -Wall -Werror -pedantic
 STANDARD = -std=c99
 CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} ${STANDARD} -fPIC
-LFLAGS   =
+LFLAGS   = -shared
 
 all: ${SHARED} ${ARCHIVE}
 
@@ -41,7 +41,7 @@ all: ${SHARED} ${ARCHIVE}
 	${CC} -c ${CFLAGS} $< -o $@
 
 ${SHARED}: ${OBJ}
-	${CC} -shared -o $@ ${OBJ}
+	${CC} ${LFLAGS} -o $@ ${OBJ}
 
 ${ARCHIVE}: ${OBJ}
 	ar rcs $@ ${OBJ}
