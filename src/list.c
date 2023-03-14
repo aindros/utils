@@ -115,9 +115,3 @@ clist_iterator_next(iterator_t *i)
 
 	return data;
 }
-
-char *
-clist_version(void)
-{
-  return VERSION;
-}

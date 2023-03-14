@@ -173,7 +173,7 @@ test_list6()
 	log("Running...");
 
 	char buff[127];
-	sprintf(buff, "Version: %s", clist_version());
+	sprintf(buff, "Version: %s", utils_version());
 	log(buff);
 
 	log("OK\n");
