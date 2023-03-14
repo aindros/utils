@@ -61,7 +61,15 @@ dist: clean
 
 install: all
 	mkdir -p ${PREFIX}/lib/${NAME}
-	cp ${SHARED} ${PREFIX}/lib/${NAME}/
+	cp ${SHARED}  ${PREFIX}/lib/${NAME}/
+	cp ${ARCHIVE} ${PREFIX}/lib/${NAME}/
+	mkdir -p ${PREFIX}/include/${NAME}
+	cp src/list.h ${PREFIX}/include/${NAME}/
+	cp src/map.h  ${PREFIX}/include/${NAME}/
+
+uninstall:
+	rm -rf ${PREFIX}/lib/${NAME}
+	rm -rf ${PREFIX}/include/${NAME}
 
 tests: all
 	@make -C test
