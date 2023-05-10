@@ -11,6 +11,8 @@ LIBNAME = lib${NAME}
 LIBDSCR = A utility library
 LIBVER  = 0.0.1
 
+PC_FILE = ${NAME}.pc
+
 CFLAGS  = -Wall --std=c99 -pedantic ${OPT} -DLIBVER=\"${LIBVER}\"
 
 PKG_CONFIG_PATH != pkg-config --variable pc_path pkg-config | sed -E "s|.*(${PREFIX}[^:]*)[:].*|\1|g"
