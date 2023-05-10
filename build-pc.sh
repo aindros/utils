@@ -25,6 +25,9 @@ do
 			shift
 			VERSION=$1
 		;;
+		*)
+			TARGET=$1
+		;;
 	esac
 	shift
 done
@@ -37,7 +40,7 @@ elif [ -z $NAME ]; then
 	exit 1
 fi
 
-cat <<EOF > utils.pc
+cat <<EOF > $TARGET
 prefix=$PREFIX
 exec_prefix=\${prefix}
 includedir=\${prefix}/include
