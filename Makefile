@@ -3,6 +3,7 @@
 include config.mk
 
 dist: static shared
+	./build-pc.sh -p ${PREFIX} -n ${NAME} -ln ${LIBNAME} -d "${LIBDSCR}" -v ${LIBVER} ${NAME}.pc
 
 static:
 	@make OPT='-O2 -pipe -Werror' ${LIBNAME:=.a}
