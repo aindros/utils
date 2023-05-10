@@ -3,8 +3,6 @@
 #ifndef __CUTILS_H__
 #define __CUTILS_H__
 
-#include "version.h"
-
 typedef struct list_item_t {
   void *data;
   struct list_item_t *next;
@@ -27,5 +25,7 @@ void         clist_remove           (list_t *, list_item_t *);
 iterator_t   clist_iterator         (list_t *);
 int          clist_iterator_has_next(iterator_t);
 void        *clist_iterator_next    (iterator_t *);
+
+char *cutils_version();
 
 #endif /* __CUTILS_H__ */
