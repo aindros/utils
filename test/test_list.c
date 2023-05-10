@@ -188,6 +188,7 @@ test_list6()
 void
 test_list7()
 {
+	/* Test adding long strings to the list */
 	log("Running...");
 
 	list_t list1 = clist_create();
