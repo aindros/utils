@@ -7,7 +7,7 @@ SRC != find src -name "*.c"
 OBJ  = ${SRC:.c=.o}
 
 NAME    = utils
-LIBNAME = libutils
+LIBNAME = lib${NAME}
 LIBDSCR = A utility library
 LIBVER  = 0.0.1
 
