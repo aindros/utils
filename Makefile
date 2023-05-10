@@ -2,6 +2,8 @@
 
 include config.mk
 
+all: dist tests
+
 dist: static shared
 	./build-pc.sh -p ${PREFIX} -n ${NAME} -ln ${LIBNAME} -d "${LIBDSCR}" -v ${LIBVER} ${PC_FILE}
 
@@ -30,7 +32,7 @@ clean:
 	cd test && make clean
 
 tests: dist
-	cd test && make clean tests
+	@make -C test
 
 install: dist
 	mkdir -p ${PREFIX}/include
