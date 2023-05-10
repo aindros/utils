@@ -1,6 +1,6 @@
 # See LICENSE file for copyright and license details.
 
-PREFIX = /usr/local/aiezzi
+PREFIX = /usr/local
 
 CC   = cc
 SRC != find src -name "*.c"
