@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
-#ifndef _LIST_H_
-#define _LIST_H_
+#ifndef __CUTILS_H__
+#define __CUTILS_H__
 
 #include "version.h"
 
@@ -28,4 +28,4 @@ iterator_t   clist_iterator         (list_t *);
 int          clist_iterator_has_next(iterator_t);
 void        *clist_iterator_next    (iterator_t *);
 
-#endif
+#endif /* __CUTILS_H__ */
