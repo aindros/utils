@@ -32,6 +32,8 @@ tests: dist
 	cd test && make clean tests
 
 install: dist
+	mkdir -p ${PREFIX}/include
+	mkdir -p ${PREFIX}/lib
 	cp src/utils.h ${PREFIX}/include/utils.h
 	cp ${LIBNAME:=.so} ${PREFIX}/lib/${LIBNAME:=.so}
 	cp ${LIBNAME:=.a} ${PREFIX}/lib/${LIBNAME:=.a}
