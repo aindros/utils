@@ -15,4 +15,4 @@ PC_FILE = ${NAME}.pc
 
 CFLAGS  = -Wall --std=c99 -pedantic ${OPT} -DLIBVER=\"${LIBVER}\"
 
-PKG_CONFIG_PATH != pkg-config --variable pc_path pkg-config | sed -E "s|.*(${PREFIX}[^:]*)[:].*|\1|g"
+PKG_CONFIG_PATH != pkg-config --variable pc_path pkg-config | sed -E "s|.*(/usr/local[^:]*)[:].*|\1|g"
