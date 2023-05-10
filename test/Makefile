@@ -32,6 +32,11 @@ LFLAGS   = -l${LIBNAME} -L../ -Wl,-rpath=../
 NAME = test1
 
 all: ${SHARED} ${NAME}
+	@echo
+	@echo '+-----------------+'
+	@echo '| Executing tests |'
+	@echo '+-----------------+'
+	@echo
 	./${NAME}
 
 ${SHARED}:
