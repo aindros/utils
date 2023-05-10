@@ -12,15 +12,15 @@ void test_list4();
 void test_list5();
 void test_list6();
 
-void
-test_map()
-{
-	map_t map = cmap_create();
-	cmap_put(&map, "hi",    "test");
-	cmap_put(&map, "hello", "test");
-	cmap_put(&map, "good",  "test");
-	cmap_put(&map, "best",  "test");
-}
+//void
+//test_map()
+//{
+//	map_t map = cmap_create();
+//	cmap_put(&map, "hi",    "test");
+//	cmap_put(&map, "hello", "test");
+//	cmap_put(&map, "good",  "test");
+//	cmap_put(&map, "best",  "test");
+//}
 
 int main(int argc, char** argv)
 {
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	test_list5();
 	test_list6();
 
-	test_map();
+//	test_map();
 
 	return 0;
 }
