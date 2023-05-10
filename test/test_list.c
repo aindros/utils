@@ -34,7 +34,7 @@ test_list1()
 	const char *data = "hello";
 
 	list_t list = clist_create();
-	clist_add(&list, (void *) data, strlen(data) * sizeof(char));
+	clist_add(&list, (void *) data, strlen(data) + 1);
 
 	assert(list.first == list.last);
 	assert(strcmp(list.first->data, data) == 0);
@@ -52,7 +52,7 @@ test_list2()
 	char *data1 = strdup("hello");
 
 	list_t list = clist_create();
-	clist_add(&list, data1, strlen(data1) * sizeof(char));
+	clist_add(&list, data1, strlen(data1) + 1);
 
 	iterator_t it = clist_iterator(&list);
 	assert(clist_iterator_has_next(it));
@@ -78,8 +78,8 @@ test_list3()
 	char *str1 = "test1";
 	char *str2 = "test2";
 
-	clist_add(&l1, str1, strlen(str1) * sizeof(char));
-	clist_add(&l2, str2, strlen(str2) * sizeof(char));
+	clist_add(&l1, str1, strlen(str1) + 1);
+	clist_add(&l2, str2, strlen(str2) + 1);
 
 	clist_add_all(&l1, &l2);
 
@@ -108,12 +108,12 @@ test_list4()
 	char *s2 = "test2";
 	char *s3 = "test3";
 
-	clist_add(&l1, s1, strlen(s1) * sizeof(char));
-	clist_add(&l2, s2, strlen(s2) * sizeof(char));
+	clist_add(&l1, s1, strlen(s1) + 1);
+	clist_add(&l2, s2, strlen(s2) + 1);
 	clist_add_all(&l1, &l2);
 
 	/* add a new element */
-	clist_add(&l1, s3, strlen(s3) * sizeof(char));
+	clist_add(&l1, s3, strlen(s3) + 1);
 
 	iterator_t i = clist_iterator(&l1);
 	if (clist_iterator_has_next(i))
@@ -147,14 +147,14 @@ list_item_t *r;
     sprintf(buffer, "%d", i);
     strcpy(dest, "i");
     strcat(dest, buffer);
-    clist_add(&list1, dest, strlen(dest) * sizeof(char));
+    clist_add(&list1, dest, strlen(dest) + 1);
   }
 
   for (int i = 0; i < 5; i++) {
     sprintf(buffer, "%d", i);
     strcpy(dest, "j");
     strcat(dest, buffer);
-    clist_add(&list2, dest, strlen(dest) * sizeof(char));
+    clist_add(&list2, dest, strlen(dest) + 1);
     if (i == 3) r = list2.last;
   }
 
