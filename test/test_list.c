@@ -184,3 +184,29 @@ test_list6()
 
 	log("OK\n");
 }
+
+void
+test_list7()
+{
+	log("Running...");
+	list_t list1 = clist_create();
+
+	char *str1 = "Long string 1";
+	char *str2 = "Long string 2";
+	char *str3 = "Long string 3";
+	char *str4 = "";
+	char *str5 = "Long string 4";
+
+	clist_add(&list1, strdup(str1), strlen(str1) * sizeof(char));
+	clist_add(&list1, strdup(str2), strlen(str2) * sizeof(char));
+	clist_add(&list1, strdup(str3), strlen(str3) * sizeof(char));
+	clist_add(&list1, strdup(str4), strlen(str4) * sizeof(char));
+	clist_add(&list1, strdup(str5), strlen(str5) * sizeof(char));
+
+	iterator_t it = clist_iterator(&list1);
+	while(clist_iterator_has_next(it)) {
+		printf("%s\n", (char *) clist_iterator_next(&it));
+	}
+
+	log("OK\n");
+}
