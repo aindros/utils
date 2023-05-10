@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <list.h>
-#include <map.h>
+#include <utils.h>
 
 void test_list1();
 void test_list2();
@@ -32,7 +31,7 @@ int main(int argc, char** argv)
 	test_list5();
 	test_list6();
 
-  test_map();
+	test_map();
 
 	return 0;
 }

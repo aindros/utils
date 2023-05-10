@@ -20,8 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <list.h>
-#include <map.h>
+#include <utils.h>
 
 #define assert(c) if (c == 0) { printf("%d", __LINE__); exit(1);}
 #define log(str) printf("%s: %s\n", __func__, str);
@@ -173,7 +172,7 @@ test_list6()
 	log("Running...");
 
 	char buff[127];
-	sprintf(buff, "Version: %s", utils_version());
+	sprintf(buff, "Version: %s", cutils_version());
 	log(buff);
 
 	log("OK\n");
