@@ -22,7 +22,7 @@
 #include <string.h>
 #include <utils.h>
 
-#define assert(c) if (c == 0) { printf("%d", __LINE__); exit(1);}
+#define assert(c) if (c == 0) { printf("%s:%d\n", __FILE__, __LINE__); exit(1);}
 #define log(str) printf("%s: %s\n", __func__, str);
 
 void
