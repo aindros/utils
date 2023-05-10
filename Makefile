@@ -1,58 +1,44 @@
 # See LICENSE file for copyright and license details.
 
-CC   = cc
-SRC != find src -name '*.c'
-OBJ  = ${SRC:.c=.o}
-NAME = utils
+include config.mk
 
-LIBNAME = lib${NAME}
-SHARED  = ${LIBNAME}.so
-ARCHIVE = ${LIBNAME}.a
-DISTNAME = ${LIBNAME}-${VERSION}
+dist: static shared
 
-VERSION  = 0.0.1
+static:
+	@make OPT='-O2 -pipe -Werror' ${LIBNAME:=.a}
+	rm -f ${OBJ}
 
-PREFIX   = /usr/local
-WARNINGS = -Wall -Werror -pedantic
-STANDARD = -std=c99
-CFLAGS   = -DVERSION='"${VERSION}"' ${WARNINGS} ${STANDARD} -fPIC
-LFLAGS   = -shared
+shared:
+	@make OPT='-O2 -pipe -Werror -fPIC' ${LIBNAME:=.so}
+	rm -f ${OBJ}
 
-all: ${SHARED} ${ARCHIVE}
+debug:
+	@make OPT=-g all
 
-.c.o:
-	${CC} -c ${CFLAGS} $< -o $@
+${LIBNAME:=.so}: ${OBJ}
+	${CC} ${LDFLAGS} -shared ${OBJ} -o $@
 
-${SHARED}: ${OBJ}
-	${CC} ${LFLAGS} -o $@ ${OBJ}
-
-${ARCHIVE}: ${OBJ}
+${LIBNAME:=.a}: ${OBJ}
 	ar rcs $@ ${OBJ}
 
+.c.o:
+	${CC} ${CFLAGS} -c $< -o $@
+
 clean:
-	rm -f ${SHARED} ${ARCHIVE}
-	rm -f ${OBJ}
-	rm -f ${DISTNAME}.tar.gz
-	@make -C test $@
+	rm -f ${OBJ} ${LIBNAME}.* *.core
+	cd test && make clean
 
-dist: clean
-	mkdir -p ${DISTNAME}
-	cp -R LICENSE Makefile DOSmakefile README.md src test ${DISTNAME}
-	tar -cf ${DISTNAME}.tar ${DISTNAME}
-	gzip ${DISTNAME}.tar
-	rm -rf ${DISTNAME}
+tests: dist
+	cd test && make clean tests
 
-install: all
-	mkdir -p ${PREFIX}/lib/${NAME}
-	cp ${SHARED}  ${PREFIX}/lib/${NAME}/
-	cp ${ARCHIVE} ${PREFIX}/lib/${NAME}/
-	mkdir -p ${PREFIX}/include/${NAME}
-	cp src/list.h ${PREFIX}/include/${NAME}/
-	cp src/map.h  ${PREFIX}/include/${NAME}/
+install: dist
+	cp src/utils.h ${PREFIX}/include/utils.h
+	cp ${LIBNAME:=.so} ${PREFIX}/lib/${LIBNAME:=.so}
+	cp ${LIBNAME:=.a} ${PREFIX}/lib/${LIBNAME:=.a}
+	cp utils.pc ${PKG_CONFIG_PATH}/utils.pc
 
 uninstall:
-	rm -rf ${PREFIX}/lib/${NAME}
-	rm -rf ${PREFIX}/include/${NAME}
-
-tests: all
-	@make -C test
+	rm -f ${PREFIX}/include/utils.h
+	rm -f ${PREFIX}/lib/${LIBNAME:=.so}
+	rm -f ${PREFIX}/lib/${LIBNAME:=.a}
+	rm -f ${PKG_CONFIG_PATH}/utils.pc

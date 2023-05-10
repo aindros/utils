@@ -3,5 +3,5 @@
 char *
 cutils_version()
 {
-	return VERSION;
+	return LIBVER;
 }
