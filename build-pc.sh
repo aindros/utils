@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# See LICENSE file for copyright and license details.
+
 VERSION=0.0.1
 
 while [ $# -gt 0 ]
