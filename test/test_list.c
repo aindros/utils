@@ -226,3 +226,36 @@ test_list7()
 
 	log("OK\n");
 }
+
+void
+test_list8()
+{
+	log("Running...");
+
+	struct test_struct {
+		char *data;
+	};
+
+	struct test_struct *s1 = malloc(sizeof(struct test_struct *));
+	struct test_struct *s2 = malloc(sizeof(struct test_struct *));
+
+	s1->data = strdup("A long, but very long long string");
+	s2->data = strdup("Lorem ipsum");
+
+	list_t l = clist_create();
+
+	clist_add(&l, s1, sizeof(s1));
+	clist_add(&l, s2, sizeof(s2));
+
+	iterator_t it = clist_iterator(&l);
+
+	assert(clist_iterator_has_next(it));
+	assert(strcmp(((struct test_struct *) clist_iterator_next(&it))->data, "A long, but very long long string") == 0);
+
+	assert(clist_iterator_has_next(it));
+	assert(strcmp(((struct test_struct *) clist_iterator_next(&it))->data, "Lorem ipsum") == 0);
+
+	assert(clist_iterator_has_next(it) == 0);
+
+	log("OK\n");
+}

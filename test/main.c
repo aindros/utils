@@ -12,6 +12,7 @@ void test_list4();
 void test_list5();
 void test_list6();
 void test_list7();
+void test_list8();
 
 //void
 //test_map()
@@ -32,6 +33,7 @@ int main(int argc, char** argv)
 	test_list5();
 	test_list6();
 	test_list7();
+	test_list8();
 
 //	test_map();
 
