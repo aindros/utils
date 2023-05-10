@@ -46,7 +46,6 @@ exec_prefix=\${prefix}
 includedir=\${prefix}/include
 libdir=\${exec_prefix}/lib
 
-
 Name: $NAME
 Description: $LIBNAME - $DESCR
 Version: $VERSION
