@@ -1,3 +1,5 @@
+# See LICENSE file for copyright and license details.
+
 ARCHITECTURE=x64
 
 WIN_SDK_DRIVE=D:
