@@ -189,6 +189,7 @@ void
 test_list7()
 {
 	log("Running...");
+
 	list_t list1 = clist_create();
 
 	char *str1 = "Long string 1";
