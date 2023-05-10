@@ -199,16 +199,30 @@ test_list7()
 	char *str4 = "";
 	char *str5 = "Long string 4";
 
-	clist_add(&list1, strdup(str1), strlen(str1) * sizeof(char));
-	clist_add(&list1, strdup(str2), strlen(str2) * sizeof(char));
-	clist_add(&list1, strdup(str3), strlen(str3) * sizeof(char));
-	clist_add(&list1, strdup(str4), strlen(str4) * sizeof(char));
-	clist_add(&list1, strdup(str5), strlen(str5) * sizeof(char));
+	clist_add(&list1, strdup(str1), strlen(str1) + 1);
+	clist_add(&list1, strdup(str2), strlen(str2) + 1);
+	clist_add(&list1, strdup(str3), strlen(str3) + 1);
+	clist_add(&list1, strdup(str4), strlen(str4) + 1);
+	clist_add(&list1, strdup(str5), strlen(str5) + 1);
 
 	iterator_t it = clist_iterator(&list1);
-	while(clist_iterator_has_next(it)) {
-		printf("%s\n", (char *) clist_iterator_next(&it));
-	}
+
+	assert(clist_iterator_has_next(it));
+	assert(strcmp((char *) clist_iterator_next(&it), "Long string 1") == 0);
+
+	assert(clist_iterator_has_next(it));
+	assert(strcmp((char *) clist_iterator_next(&it), "Long string 2") == 0);
+
+	assert(clist_iterator_has_next(it));
+	assert(strcmp((char *) clist_iterator_next(&it), "Long string 3") == 0);
+
+	assert(clist_iterator_has_next(it));
+	assert(strcmp((char *) clist_iterator_next(&it), "") == 0);
+
+	assert(clist_iterator_has_next(it));
+	assert(strcmp((char *) clist_iterator_next(&it), "Long string 4") == 0);
+
+	assert(clist_iterator_has_next(it) == 0);
 
 	log("OK\n");
 }
