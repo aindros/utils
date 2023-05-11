@@ -49,7 +49,7 @@ includedir=\${prefix}/include
 libdir=\${exec_prefix}/lib
 
 Name: $NAME
-Description: $LIBNAME - $DESCR
+Description: $DESCR
 Version: $VERSION
 Cflags: -I\${includedir}
 Libs: -L\${libdir} -l$NAME
