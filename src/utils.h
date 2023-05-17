@@ -20,7 +20,8 @@ typedef struct iterator_t {
 } iterator_t;
 
 list_t       clist_create           (void);
-void         clist_add              (list_t *, void *, size_t);
+void         clist_add              (list_t *, void *);
+void         clist_add_s            (list_t *, void *, size_t);
 void         clist_add_all          (list_t *, list_t *);
 void         clist_remove           (list_t *, list_item_t *);
 iterator_t   clist_iterator         (list_t *);

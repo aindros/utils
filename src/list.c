@@ -18,15 +18,11 @@ clist_create()
 
 void
 clist_add(list_t *list,
-          void   *data,
-          size_t  data_s)
+          void *data)
 {
 	struct list_item_t *item = malloc(sizeof(struct list_item_t));
 
-	void *dest = malloc(data_s); /* allocates memory like data parameter */
-	memcpy(dest, data, data_s);  /* copies data inside dest              */
-	item->data = dest;
-	item->data_s = data_s;
+	item->data = data;
 	item->next = NULL;
 
   if (list->first == NULL)
@@ -39,6 +35,19 @@ clist_add(list_t *list,
   list->size ++;
 }
 
+void
+clist_add_s(list_t *list,
+            void   *data,
+            size_t  data_s)
+{
+	void *dest = malloc(data_s); /* allocates memory like data parameter */
+	memcpy(dest, data, data_s);  /* copies data inside dest              */
+
+	clist_add(list, dest);
+
+	list->last->data_s = data_s;
+}
+
 void clist_add_all(list_t *dest,
                    list_t *other)
 {
@@ -48,7 +57,7 @@ void clist_add_all(list_t *dest,
 	iterator_t i = clist_iterator(other);
 	while (clist_iterator_has_next(i)) {
 		list_item_t *item = clist_iterator_next_item(&i);
-		clist_add(dest, item->data, item->data_s);
+		clist_add_s(dest, item->data, item->data_s);
 	}
 }
 
