@@ -3,6 +3,8 @@
 #ifndef __CUTILS_H__
 #define __CUTILS_H__
 
+#include <stdlib.h> /* size_t */
+
 typedef struct list_item_t {
   void *data;
   size_t data_s;
