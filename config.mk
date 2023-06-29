@@ -9,7 +9,7 @@ OBJ  = ${SRC:.c=.o}
 NAME    = utils
 LIBNAME = lib${NAME}
 LIBDSCR = A utility library
-LIBVER  = 0.0.3
+LIBVER  = 0.0.4
 
 PC_FILE = ${NAME}.pc
 
